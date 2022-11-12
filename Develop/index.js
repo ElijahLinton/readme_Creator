@@ -1,8 +1,10 @@
 // TODO: Include packages needed for this application
    const inquirer = require('inquirer')
 // TODO: Create an array of questions for user input
-inquirer
-.prompt([
+ const { writeFile } = require('fs').promises;
+
+const questions = () => {
+   return inquirer.prompt([
     {
     name: 'readName',
     type: 'input',
@@ -41,13 +43,16 @@ inquirer
       name:'test_instructions',
       type:'input',
       message: 'provide instructions on how to test application'
-   }
+   },
+
 ]);
 
-
+}
 // TODO: Create a function to write README file
-const writeToFile = ({readName, description,installation_instructions,
-usage,table_contents,contributions,test_instructions}) => {`
+
+
+const createReadMe = ({readName, description,installation_instructions,
+usage,contributions,table_contents,test_instructions}) => `
 #${readName}
 
 ## Description
@@ -66,17 +71,20 @@ ${installation_instructions}
 
 ## Usage
 
-
+${usage}
 
 ## Credits
 
-N/A
+${contributions}
 
 ##License
 
 
 
 ---
+
+## Table of Contents
+${table_contents}
 
 🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
 
@@ -96,9 +104,16 @@ If you created an application or package and would like other developers to cont
 
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.`}
+Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+${test_instructions}`;
 
-// TODO: Create a function fo initialize app
-function init() {}
+// TODO: Create a function to initialize app
+const init = () => {
+   questions()
+   .then((answers) => writeFile('README.md',createReadMe(answers)))
+   .then(() => console.log('file written and executed!'))
+   .catch((err) => console.error(err));
+};
 
 // Function call 
+init()
