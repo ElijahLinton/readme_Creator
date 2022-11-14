@@ -1,3 +1,4 @@
+ const generateMarkdown = require('./Develop/generateMarkdown.js')
 // TODO: Include packages needed for this application
    const inquirer = require('inquirer')
 // TODO: Create an array of questions for user input
@@ -6,7 +7,7 @@
 const questions = () => {
    return inquirer.prompt([
     {
-    name: 'readName',
+    name: 'title',
     type: 'input',
     message:'what is title of your app'
 },
@@ -51,9 +52,9 @@ const questions = () => {
 // TODO: Create a function to write README file
 
 
-const createReadMe = ({readName, description,installation_instructions,
+const createReadMe = ({title, description,installation_instructions,
 usage,contributions,table_contents,test_instructions}) => `
-#${readName}
+#${title}
 
 ## Description
 ${description}
