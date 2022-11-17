@@ -1,7 +1,8 @@
 # readme_Creator
 
 ## Description
-
+ready for something different? WELL GET READY FOR A BACKEND ASSIGNMENT!!
+this is the the readme creator what is it? its simple type in a few words and BOOM YOU GOT YOURSELF A README. pretty cool right how can this be convienent you wonder? well in case you just finished up on a new project you can quickly assemble a readme with ease by just answering a few questions.
 
 
 
@@ -15,7 +16,7 @@
 N/A
 
 ## Usage
-
+first when the would want to type "cd" into which ever the index.js file is in that typ "node index.js". the program will run then first it will ask for the name of the project. along with the liscene type that you wish then also a email under the questions section. than after all quesstions are completed you are free to take a look at your creation.you can use this anytime you need to quickly make a readme file its really fast and simple.
 ## Screenshot
 [webpage screenshot](assets\workday.PNG)
 
