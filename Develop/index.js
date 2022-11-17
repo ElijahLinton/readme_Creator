@@ -1,8 +1,8 @@
- const generateMarkdown = require('./Develop/generateMarkdown.js')
 // TODO: Include packages needed for this application
    const inquirer = require('inquirer')
 // TODO: Create an array of questions for user input
- const { writeFile } = require('fs').promises;
+const  fs  = require('fs')
+
 
 const questions = () => {
    return inquirer.prompt([
@@ -46,74 +46,50 @@ const questions = () => {
       message: 'provide instructions on how to test application'
    },
 
+   {
+      name:'MIT_link',
+      type:'input',
+      message: 'would you like a liscene? type one of the follwing("MIT","MPL","ISC")'
+   },
+   
+   
+   {
+      name:'github_name',
+      type:'input',
+      message: 'please list your github name'
+   },
+
+   {
+      name:'email',
+      type:'input',
+      message: 'what is a good email to contact you'
+   },
 ]);
+
 
 }
 // TODO: Create a function to write README file
+const generateMarkdown = require('./generateMarkdown')
+generateMarkdown
 
+const  writeFile = data =>{fs.writeFile('README.md', data, err => {
+   
+   switch (err) {
+      case err:
+       console.log(err);
+       break;
+   
+   } 
+})
 
-const createReadMe = ({title, description,installation_instructions,
-usage,contributions,table_contents,test_instructions}) => `
-#${title}
-
-## Description
-${description}
-
-
-
-- [Installation](#Installion)
-- [Usage](#Usage.)
-- [Credits](#project)
-- [License](#Liscense)
-
-## Installation
-
-${installation_instructions}
-
-## Usage
-
-${usage}
-
-## Credits
-
-${contributions}
-
-##License
-
-
-
----
-
-## Table of Contents
-${table_contents}
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-
-Badges aren't necessary, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute to it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
-${test_instructions}`;
-
+} 
 // TODO: Create a function to initialize app
 const init = () => {
    questions()
-   .then((answers) => writeFile('README.md',createReadMe(answers)))
-   .then(() => console.log('file written and executed!'))
-   .catch((err) => console.error(err));
+   .then(answers => generateMarkdown(answers))
+   .then((index) => writeFile(index));
+   
+
 };
 
 // Function call 
